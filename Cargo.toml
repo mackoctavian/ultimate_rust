@@ -1,0 +1,13 @@
+[package]
+name = "ultimate_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[workspace]
+members = [ 
+    "session1/functions",
+    "session1/hello_word", 
+    "session1/variables",
+]

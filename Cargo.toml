@@ -7,7 +7,9 @@ edition = "2021"
 
 [workspace]
 members = [ 
+    "session1/authentication", 
     "session1/functions",
     "session1/hello_word", 
+    "session1/login",
     "session1/variables",
 ]

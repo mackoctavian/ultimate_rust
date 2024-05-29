@@ -3,12 +3,23 @@
 version = 3
 
 [[package]]
+name = "authentication"
+version = "0.1.0"
+
+[[package]]
 name = "functions"
 version = "0.1.0"
 
 [[package]]
 name = "hello_word"
 version = "0.1.0"
+
+[[package]]
+name = "login"
+version = "0.1.0"
+dependencies = [
+ "authentication",
+]
 
 [[package]]
 name = "ultimate_rust"

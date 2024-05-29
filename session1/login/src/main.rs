@@ -1,4 +1,4 @@
-use authentication::{login, read_line, greet_user}; 
+use authentication::{greet_user, login, read_line, LoginAction}; 
 
 fn main() {
     let mut tries = 0;
@@ -9,20 +9,24 @@ fn main() {
         println!("Enter your password");
         let password = read_line();
 
-        if login(&username, &password) {
-            greet_user(&username);
-            break;
-        }else {
-            println!("Incorrect username of password");
-            tries += 1;
+        match login(&username, &password) {
+            Some(LoginAction::Granted(role)) => {
+                match role {
+                    authentication::LoginRole::Admin => println!("Admin"),
+                    authentication::LoginRole::User => println!("user")
+                }
 
-            if tries >= 3 { 
-                println!("Too many tries");
                 break;
-            }else {
-                let tries_remaining = 3 - tries;  
-                println!("{} trial remaining", tries_remaining);
             }
+
+            Some(LoginAction::Denied) => { println!("Denied") }
+
+            None => { 
+                println!("New user in our system");
+                break;
         }
+        }
+
+        
     }
 }

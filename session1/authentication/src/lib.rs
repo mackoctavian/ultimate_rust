@@ -1,5 +1,5 @@
-pub fn greet_user(name: &str) -> String {
-    format!("Hello {name}")
+pub fn greet_user(name: &str) {
+    println!("Hello {name}")
 }
 
 pub fn login(username: &str, password: &str) -> bool {
@@ -15,11 +15,6 @@ pub fn read_line() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn test_greet_user() {
-        assert_eq!("Hello Mack", greet_user("Mack"));
-    }
 
     #[test] 
     fn test_login() {

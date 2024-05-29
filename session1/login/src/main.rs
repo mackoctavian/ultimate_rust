@@ -10,7 +10,7 @@ fn main() {
         let password = read_line();
 
         if login(&username, &password) {
-            println!("Welcome, {username}");
+            greet_user(&username);
             break;
         }else {
             println!("Incorrect username of password");
@@ -20,7 +20,7 @@ fn main() {
                 println!("Too many tries");
                 break;
             }else {
-                let mut tries_remaining = 3 - tries;  
+                let tries_remaining = 3 - tries;  
                 println!("{} trial remaining", tries_remaining);
             }
         }

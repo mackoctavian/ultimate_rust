@@ -13,7 +13,7 @@ fn main() {
             Some(LoginAction::Granted(role)) => {
                 match role {
                     authentication::LoginRole::Admin => println!("Admin"),
-                    authentication::LoginRole::User => println!("user")
+                    authentication::LoginRole::User => println!("user"),
                 }
 
                 break;
@@ -21,10 +21,7 @@ fn main() {
 
             Some(LoginAction::Denied) => { println!("Denied") }
 
-            None => { 
-                println!("New user in our system");
-                break;
-        }
+            None => {}
         }
 
         

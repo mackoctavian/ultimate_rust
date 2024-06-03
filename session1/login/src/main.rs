@@ -1,4 +1,4 @@
-use authentication::{greet_user, login, read_line, LoginAction}; 
+use authentication::{login, read_line, LoginAction}; 
 
 fn main() {
     let mut tries = 0;

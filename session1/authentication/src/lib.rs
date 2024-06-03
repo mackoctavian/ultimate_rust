@@ -1,13 +1,17 @@
 use std::{collections::HashMap, path::Path};
 use serde::{Serialize, Deserialize};
 
-pub fn greet_user(name: &str) {
-    println!("Hello {name}")
+pub fn hash_password(password: &str) -> String {
+    use sha2::Digest;
+    let mut hasher = sha2::Sha256::new();
+    hasher.update(password);
+    format!("{:X}", hasher.finalize())
 }
 
 pub fn login(username: &str, password: &str) -> Option<LoginAction> {
     let username = username.to_lowercase();
     let users = get_users();
+    let password = hash_password(password);
 
     if let Some(user) = users.get(&username) {
         if user.password == password {
@@ -49,7 +53,7 @@ impl User {
     pub fn new(username: &str, password: &str, role: LoginRole) -> Self {
         Self {
             username: username.to_lowercase(),
-            password: password.to_string(),
+            password: hash_password(password),
             role
         }
     }

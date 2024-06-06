@@ -43,6 +43,7 @@ enum Commands {
     }
 }
 
+//Add new users
 fn add_user(username: String, password: String, admin: bool) {
     let mut users: HashMap<String, User> = get_users();
     let role = if admin {
@@ -67,6 +68,7 @@ fn list_users() {
     });
 }
 
+//Deleting existing users
 fn delete_user(username: String) {
     let mut users: HashMap<String, User> = get_users();
 
@@ -78,6 +80,7 @@ fn delete_user(username: String) {
     }
 }
 
+//Change user's password
 fn change_password(username: String, password: String) {
     let mut users = get_users();
     if let Some(user) = users.get_mut(&username) {

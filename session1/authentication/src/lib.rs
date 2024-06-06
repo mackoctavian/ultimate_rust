@@ -59,13 +59,7 @@ impl User {
     }
 }
 
-// pub fn get_users() -> Vec<User>{
-//     vec![
-//         User::new("admin", "password", LoginRole::Admin),
-//         User::new("user", "password", LoginRole::User)
-//     ]
-// }
-
+//Get users from file path
 pub fn get_users() -> HashMap<String, User> {
     let users_path = Path::new("users.json");
     if users_path.exists() {
@@ -83,6 +77,7 @@ pub fn get_users() -> HashMap<String, User> {
     }
 }
 
+//Get default users of the system
 fn  get_default_users() -> HashMap<String, User> {
     let mut users = HashMap::new();
     users.insert("admin".to_string(), User::new("admin", "password", LoginRole::Admin),);
@@ -90,6 +85,7 @@ fn  get_default_users() -> HashMap<String, User> {
     users
 }
 
+//Saving users
 pub fn save_users(users: HashMap<String, User>) {
     let users_path = Path::new("users.json");
     let users_json = serde_json::to_string(&users).unwrap();

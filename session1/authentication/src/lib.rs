@@ -46,7 +46,7 @@ pub fn read_line() -> String {
 pub struct User {
     pub username: String,
     pub password: String,
-    role: LoginRole
+    pub role: LoginRole
 }
 
 impl User {
@@ -66,7 +66,7 @@ impl User {
 //     ]
 // }
 
-fn  get_users() -> HashMap<String, User> {
+pub fn get_users() -> HashMap<String, User> {
     let users_path = Path::new("users.json");
     if users_path.exists() {
         //Load File
@@ -89,6 +89,13 @@ fn  get_default_users() -> HashMap<String, User> {
     users.insert("user".to_string(), User::new("user", "password", LoginRole::User));
     users
 }
+
+pub fn save_users(users: HashMap<String, User>) {
+    let users_path = Path::new("users.json");
+    let users_json = serde_json::to_string(&users).unwrap();
+    std::fs::write(users_path, users_json).unwrap(); 
+}
+
 
 
 #[cfg(test)]

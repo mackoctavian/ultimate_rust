@@ -11,5 +11,5 @@ members = [ "misc/closures",
     "session1/functions",
     "session1/hello_word", 
     "session1/login", "session1/login_manager",
-    "session1/variables", "session2/divide_work", "session2/hello",
+    "session1/variables", "session2/divide_work", "session2/footgun", "session2/hello", "session2/mutexes",
 ]

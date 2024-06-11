@@ -159,6 +159,10 @@ name = "divide_work"
 version = "0.1.0"
 
 [[package]]
+name = "footgun"
+version = "0.1.0"
+
+[[package]]
 name = "functions"
 version = "0.1.0"
 
@@ -218,6 +222,10 @@ dependencies = [
  "authentication",
  "clap",
 ]
+
+[[package]]
+name = "mutexes"
+version = "0.1.0"
 
 [[package]]
 name = "proc-macro2"

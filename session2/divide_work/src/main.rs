@@ -1,19 +1,38 @@
-use std::thread;
+use std::{thread, time::Duration};
 
 
 fn main() {
 //   single_thread();
 //   multiple_thread();
 
+    // thread::Builder::new()
+    //     .name("Named Thread".to_string())
+    //     .stack_size(std::mem::size_of::<usize>() * 4)
+    //     .spawn(my_thread)
+    //     .unwrap()
+    //     .join()
+    //     .unwrap();
+
+    // chunk_example();
+
     thread::Builder::new()
-        .name("Named Thread".to_string())
-        .stack_size(std::mem::size_of::<usize>() * 4)
-        .spawn(my_thread)
+        .name("My Thread".to_string())
+        .spawn(|| {
+            for i in 0..10 {
+                println!("Thread numbered {i}");
+                thread::sleep(Duration::from_millis(1));
+            }
+        })
         .unwrap()
         .join()
         .unwrap();
 
-    chunk_example();
+    for i in 0..5 {
+        println!("Hello from the main thread");
+        thread::sleep(Duration::from_millis(1));
+    }
+
+   
 
 }
 
@@ -68,4 +87,20 @@ fn chunk_example() {
     });
 
     println!("Sum: {sum}");
+}
+
+fn scoped_threads() {
+    const N_THREADS: usize = 8;
+    let data: Vec<u32> = (0..5000).collect();
+    let chunks = data.chunks(N_THREADS);
+
+    let sum = thread::scope(|c| {
+        let mut thread_handles = Vec::new();
+        for chunk in chunks {
+            let handle = c.spawn(move || chunk.iter().sum::<u32>());
+            thread_handles.push(handle);
+        }
+
+        thread_handles.into_iter().map(|h| h.join().unwrap()).sum::<u32>()
+    });
 }

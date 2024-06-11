@@ -6,10 +6,10 @@ edition = "2021"
 [dependencies]
 
 [workspace]
-members = [ 
+members = [ "misc/closures", 
     "session1/authentication", 
     "session1/functions",
     "session1/hello_word", 
     "session1/login", "session1/login_manager",
-    "session1/variables",
+    "session1/variables", "session2/divide_work", "session2/hello",
 ]

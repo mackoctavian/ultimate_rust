@@ -59,7 +59,7 @@ impl User {
     }
 }
 
-//Get users from file path
+//Get users from file
 pub fn get_users() -> HashMap<String, User> {
     let users_path = Path::new("users.json");
     if users_path.exists() {

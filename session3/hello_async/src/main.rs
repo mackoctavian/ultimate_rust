@@ -1,24 +1,36 @@
-use std::thread;
-use std::time::Duration;
-
 use futures::executor::block_on;
+use futures::future::{join, join_all};
 use futures::join;
 
 fn main() {
-    let future = say_hello();
-    block_on(future);
+    block_on(say_hello());
 }
 
 async fn say_hello() {
     println!("Hello");
     join!(sec_function(), say_goodbye());
-}
 
-async fn say_goodbye() {
-    println!("Goodbye");
+    let n = double(2).await;
+    println!("{n}");
+
+    let futures = vec![double(1), double(2)];
+    let result = join_all(futures).await;
+
+    do_something()
 }
 
 async fn sec_function() {
-    thread::sleep(Duration::from_secs(3));
-    println!("Hello Again");
+    println!("Hello Again")
+}
+
+async fn say_goodbye() {
+    println!("Say Goobye")
+}
+
+async fn double(n: u32) -> u32 {
+    n * 2
+}
+
+fn do_something() {
+    println!("Not async");
 }
